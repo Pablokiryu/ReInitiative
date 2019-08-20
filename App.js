@@ -1,31 +1,26 @@
 
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, ScrollView, Button } from "react-native";
 import { createStackNavigator, createAppContainer } from "react-navigation";
+const EncounterList = require("./Components/EncounterList");
 
-class HomeScreen extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Home Screen</Text>
-      </View>
-    );
-  }
+export default function App() {
+  return (
+    <View style={styles.container}>
+      <Text style={{fontSize:36,fontWeight:"900",color:"teal"}}>Re-iNitiative</Text>
+      <EncounterList />
+      <Button title="Novo Encontro"/>
+    </View> 
+  );
 }
-
-const AppNavigator = createStackNavigator({
-  Home: {
-    screen: HomeScreen
-  }
-});
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    flexDirection: "column",
+    backgroundColor: '#DDD',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingTop:24
   },
 });
-
-export default createAppContainer(AppNavigator);
