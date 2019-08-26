@@ -1,14 +1,14 @@
 import React from 'react';
 import { View,TouchableOpacity,Text,Button, StyleSheet } from 'react-native';
-
+import Color from "../Constants/Colors";
 // import { Container } from './styles';
 const Encounter = props =>
 {
   return(
-    <TouchableOpacity>
+    <TouchableOpacity onPress={()=>{console.log(props.itemData.item.title);}}>
     <View style={styles.encounterStyle}>
-      <Text style={{flex:1}}>{props.itemData.item.value}</Text>
-      <Button title="X" style={{width:"40%"}} onPress={props.onDelete.bind(this,props.itemData.item)}/>
+      <Text style={{flex:1}}>{props.itemData.item.title}</Text>
+      <Button color={Color.secondary} title="X" style={{width:"40%",padding:5}} onPress={props.onDelete.bind(this,props.itemData.item)}/>
     </View>   
   </TouchableOpacity>
   );
