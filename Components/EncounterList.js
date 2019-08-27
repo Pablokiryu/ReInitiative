@@ -15,13 +15,13 @@ export const EncounterList = props => {
   }
 
   return (
-    <View style={{ flex: 1, width: "75%", height: "45%", minHeight: "30%", maxHeight: "50%", paddingVertical: "2.5%" }}>
+    <View style={{ flex: 1, width: "80%", height: "60%", minHeight: "30%", maxHeight: "75%", paddingVertical: "2.5%" }}>
       <FlatList
         data={props.encounters}
         style={{ backgroundColor: "#CCC" }}
-        contentContainerStyle={{}}
+        contentContainerStyle={{flexGrow:1}}
         renderItem={itemData =>
-          <Encounter id={itemData.item.key} itemData={itemData} onDelete={pressHandler} />}
+          <Encounter id={itemData.item.key} itemData={itemData} onDelete={pressHandler} onPressEncounter={props.onPressEncounter} />}
       />
     </View>
   );
