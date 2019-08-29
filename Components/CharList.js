@@ -1,23 +1,20 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, ScrollView, FlatList, Button } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { StyleSheet, View, Text, FlatList, Button } from "react-native";
 import Char from "./Char";
 
 export const CharList = props => {
-  console.log(props.encounter.personagens.length);
-
   let content;
 
   if (props.encounter.personagens.length != 0) {
     content = <FlatList
       data={props.encounter.personagens}
       style={{ backgroundColor: "#CCC" }}
-      contentContainerStyle={{ flexGrow: 1, }}
+      contentContainerStyle={{ flexGrow: 1, paddingVertical:5 }}
       renderItem={itemData =>
         <Char id={itemData.item.key} itemData={itemData} />}
     />
   } else {
-    content = <View style={{ height: "80%" ,alignItems:"center"}}>
+    content = <View style={{ height: "80%", alignItems: "center" }}>
       <Text>Add a First Char</Text>
     </View>
   }
@@ -26,10 +23,14 @@ export const CharList = props => {
     <View style={{ flex: 1, width: "90%", height: "80%", minHeight: "75%", maxHeight: "80%", paddingVertical: "2.5%" }}>
       {content}
       <View>
-        <Button title="Add a New Char" onPress={()=>{console.log("New Char Should Be Added")}} />
+        {/* Should add Here the commands to Re-order The list, by name, by init, by turns elapsed(?) etc... */}
+        <Button title="SortChars" onPress={props.charSort}/>
       </View>
     </View>
   );
 };
 
+const styles = StyleSheet.create({
+
+});
 export default CharList;

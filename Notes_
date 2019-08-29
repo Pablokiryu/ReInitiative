@@ -1,0 +1,7 @@
+<View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", elevation:10,backgroundColor: "#deb"}}>
+
+
+
+#E2D44E, #C5622C, #9F2C2B, #272724, #278050
+#D9D729, #B36817, #812F17, #002913, #00882A
+#ECD078, #D95B43, #C02942, #542437, #53777A

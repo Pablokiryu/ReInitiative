@@ -8,16 +8,16 @@ export default function App() {
   const [encountersList, setEncounters] = useState([{
     key: "0", title: "Mesa Mago", personagens: [
       { key: "0", charName: "Azis", initiative: 1, maxHealth: 10, currHealth: 5 },
-      { key: "1", charName: "Hiro", initiative: 5, maxHealth: 8, currHealth: 3 },
-      { key: "2", charName: "Hiro", initiative: 5, maxHealth: 8, currHealth: 3 },
-      { key: "3", charName: "Hiro", initiative: 5, maxHealth: 8, currHealth: 3 },
-      { key: "4", charName: "Hiro", initiative: 5, maxHealth: 8, currHealth: 3 },
-      { key: "5", charName: "Hiro", initiative: 5, maxHealth: 8, currHealth: 3 },
-      { key: "6", charName: "Hiro", initiative: 5, maxHealth: 8, currHealth: 3 },
-      { key: "7", charName: "Hiro", initiative: 5, maxHealth: 8, currHealth: 3 },
+      { key: "1", charName: "Hiro", initiative: 6, maxHealth: 8, currHealth: 3 },
+      { key: "2", charName: "ThinMan#1", initiative: 7, maxHealth: 8, currHealth: 3 },
+      { key: "3", charName: "ThinMan2", initiative: 12, maxHealth: 8, currHealth: 3 },
+      { key: "4", charName: "Smiliksi", initiative: 10, maxHealth: 8, currHealth: 3 },
+      { key: "5", charName: "Dimitri", initiative: 3, maxHealth: 8, currHealth: 3 },
+      { key: "6", charName: "Exarch", initiative: 4, maxHealth: 8, currHealth: 3 },
+      { key: "7", charName: "Hiro", initiative: 2, maxHealth: 8, currHealth: 3 },
       { key: "8", charName: "Hiro", initiative: 5, maxHealth: 8, currHealth: 3 },
-      { key: "9", charName: "Hiro", initiative: 5, maxHealth: 8, currHealth: 3 },
-      { key: "10", charName: "Hiro", initiative: 5, maxHealth: 8, currHealth: 3 },
+      { key: "9", charName: "Hiro", initiative: 7, maxHealth: 8, currHealth: 3 },
+      { key: "10", charName: "Hiro", initiative: 8, maxHealth: 8, currHealth: 3 },
       { key: "11", charName: "Hiro", initiative: 5, maxHealth: 8, currHealth: 3 },
       { key: "12", charName: "Hiro", initiative: 5, maxHealth: 8, currHealth: 3 }]
   },
@@ -41,7 +41,7 @@ export default function App() {
   const [selectedScreen, setSelectedScreen] = useState("StartScreen");
   const addEncounterHandler = newTitle => {
 
-    setEncounters(encountersList => [...encountersList, { key: encountersList.length.toString() + Math.random().toString(), title: newTitle, personagens: [] }])
+    setEncounters(encountersList => [ { key: encountersList.length.toString() + Math.random().toString(), title: newTitle, personagens: [] },...encountersList])
     setIsAddMode(false);
   }
   const onDeleteEncounter = encounterToDelete => {
@@ -58,12 +58,26 @@ export default function App() {
   }
 
 
-  let content;
-  console.log("Selecting Screen", selectedScreen);
-  switch (selectedScreen) {
+  const sortCharacters = (charArray, sortfunc) => {
+    let tmparray = [...charArray];
+    let sortedchars = [];
 
+    sortedchars = tmparray.sort(sortfunc);
+    return sortedchars;
+  }
+
+  const charSortHandler = encounterId => { 
+
+    console.log("\nIMMA NEED REDUX OR SMTH TO MAKE THIS EASIEr\n",
+    "otherwise this will be a MESS.\n",
+    "What i need is some way manage the state elsewhere, and resort the characters.\n");
+
+    setEncounters();
+  }
+
+  let content;
+  switch (selectedScreen) {
     case "StartScreen":
-      console.log("StartScreen selected");
       content = <StartScreen
         encountersList={encountersList}
         onDeleteEncounter={onDeleteEncounter}
@@ -74,14 +88,16 @@ export default function App() {
         onPressEncounter={onPressEncounterHandler} />
       break;
     case "EncounterScreen":
-      console.log("EncounterScreen selected");
-      content = <EncounterScreen encounter={selectedEncounter} onPressBack={() => { setSelectedScreen("StartScreen") }} />
+      content = <EncounterScreen encounter={selectedEncounter}
+        onPressBack={() => { setSelectedScreen("StartScreen") }}
+        charSort={charSortHandler} />
       break;
   }
 
   return (
     <View style={styles.container}>
       {content}
+      {/*console.log(sortCharacters(encountersList[0].personagens, (a, b) => { return b.initiative - a.initiative }))*/}
     </View>
   );
 }
