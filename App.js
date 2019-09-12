@@ -6,7 +6,7 @@ import EncounterScreen from "./Screens/EncounterScreen"
 export default function App() {
   const [isAddMode, setIsAddMode] = useState(false);
   const [encountersList, setEncounters] = useState([{
-    key: "0", title: "Mesa Mago", personagens: [
+    key: "0", title: "Mesa Mago",numberOfRounds:0, personagens: [
       { key: "0", charName: "Azis", initiative: 1, maxHealth: 10, currHealth: 5 },
       { key: "1", charName: "Hiro", initiative: 6, maxHealth: 8, currHealth: 3 },
       { key: "2", charName: "ThinMan#1", initiative: 7, maxHealth: 8, currHealth: 3 },
@@ -19,7 +19,7 @@ export default function App() {
       { key: "9", charName: "Hiro", initiative: 7, maxHealth: 8, currHealth: 3 },
       { key: "10", charName: "Hiro", initiative: 8, maxHealth: 8, currHealth: 3 },
       { key: "11", charName: "Hiro", initiative: 5, maxHealth: 8, currHealth: 3 },
-      { key: "12", charName: "Hiro", initiative: 5, maxHealth: 8, currHealth: 3 }]
+      { key: "12", charName: "Hiro", initiative: 5, maxHealth: 8, currHealth: 3 }],
   },
   { key: "1", title: "Lobisomen", personagens: [] },
   { key: "2", title: "Kobolds", personagens: [] },
